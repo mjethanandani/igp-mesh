@@ -31,7 +31,7 @@ next := $(draft)-00
 
 # latest: $(draft).txt $(draft).html
 
-default: $(next).xml $(next).txt $(next).html rib
+default: $(next).xml $(next).txt $(next).html
 
 idnits: $(next).txt
 	$(idnits) $<
