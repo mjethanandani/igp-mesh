@@ -28,7 +28,7 @@
 <rfc
   xmlns:xi="http://www.w3.org/2001/XInclude"
   category="std"
-  docName="draft-admnr-lsr-igp-mesh-latest"
+  docName="draft-admnr-lsr-igp-measurement-group-latest"
   ipr="trust200902"
   obsoletes=""
   updates=""
@@ -46,12 +46,12 @@
 -->
 
   <front>
-    <title abbrev="IGP Mesh">Advertising IGP Mesh using TLV</title>
+    <title abbrev="IGP Measurement Group">Advertising IGP Measurement Group using TLV</title>
     <!-- https://authors.ietf.org/en/rfcxml-vocabulary#title-4 -->
     <!--  The abbreviated title is required if the full title is longer
           than 39 characters -->
 
-    <seriesInfo name="Internet-Draft" value="draft-admnr-lsr-igp-mesh-latest"/>
+    <seriesInfo name="Internet-Draft" value="draft-admnr-lsr-igp-measurement-group-latest"/>
     <!-- https://authors.ietf.org/en/rfcxml-vocabulary#seriesinfo -->
     <!-- Set value to the name of the draft  -->
    
