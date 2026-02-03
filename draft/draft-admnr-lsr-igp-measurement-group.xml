@@ -209,24 +209,53 @@
           not present, the default is "Network Working Group", which
           is used by the RFC Editor as 
           a nod to the history of the RFC Series. -->
-    
-    <keyword>template</keyword>
+    <keyword>IGP</keyword>
+    <keyword>IS-IS</keyword>
+    <keyword>TWAMP</keyword>
+    <keyword>STAMP</keyword>
+    <keyword>mesh</keyword>
+    <keyword>discovery</keyword>
     <!-- Multiple keywords are allowed.  Keywords are incorporated
          into HTML output files for use by search engines. -->
 
     <abstract>
-      <t>Abstract</t>
+      <t>This document defines an IS-IS capability sub-TLV for advertising
+      measurement group membership for Active Measurement Protocols (AMPs) such as
+      TWAMP and STAMP. The mechanism allows IGP routers to discover other
+      routers participating in different measurement groups, enabling automatic
+      discovery of measurement endpoints across IGP areas. The solution uses
+      interface addresses (IPv4 or IPv6) to identify measurement group membership,
+      where the same interface address may be used for multiple measurement groups.</t>
     </abstract>
- 
+
   </front>
 
   <middle>
-    
+
     <section>
     <!-- The default attributes for <section> are numbered="true" and toc="default" -->
       <name>Introduction</name>
-      <t>Introductory text</t>
-      
+      <t>In network deployments, different IGP routers may participate in
+      different measurement groups for various purposes. For example, one measurement group
+      may be used for TWAMP (Two-Way Active Measurement Protocol), another
+      for STAMP (Simple Two-Way Active Measurement Protocol), and yet another
+      for other measurement or operational purposes.</t>
+
+      <t>To enable automatic discovery and configuration of these measurement groups,
+      there is a need for IGP routers to discover which other routers are
+      participating in which measurement groups. This discovery mechanism must work
+      whether the participating routers are in the same IGP area or not,
+      which implies that the information must be leakable across area
+      boundaries.</t>
+
+      <t>This document defines an IS-IS capability sub-TLV, similar to the
+      seamless BFD discriminators mechanism defined in <xref target="RFC7883"/>,
+      that allows routers to advertise their measurement group membership. The
+      mechanism uses interface addresses (IPv4 or IPv6) to identify measurement group
+      membership, where the interface address may be associated with either a
+      physical interface or a loopback interface. The same interface address
+      may be used to indicate membership in multiple measurement groups.</t>
+
       <section anchor="requirements">
       <!-- anchor is an optional attribute -->
         <name>Requirements Language</name>
@@ -237,180 +266,254 @@
           <xref target="RFC8174"/> when, and only when, they appear in
           all capitals, as shown here.</t>
       </section>
-      <!-- The 'Requirements Language' section is optional -->
     </section>
-    
+
     <section>
-      <name>Body</name>
-      <t>Body text</t>
+      <name>Use Case</name>
+      <t>At a high level, different IGP routers participate in different mesh
+      groups. For example, measurement group A may be used for TWAMP, measurement group B
+      for STAMP, and measurement group C for another purpose.</t>
+
+      <t>The requirements for measurement group discovery are:</t>
+      <ul spacing="normal">
+        <li>IGP routers MUST be able to discover which routers are
+        participating in which measurement groups.</li>
+        <li>Discovery MUST work whether participating routers are in the same
+        IGP area or not, which implies that the information MUST be leakable
+        across area boundaries.</li>
+        <li>An interface address (IPv4 or IPv6) is used to identify the
+        membership of a particular measurement group.</li>
+        <li>The interface address MAY be associated with either a physical
+        interface or a loopback interface.</li>
+        <li>The same interface address MAY be used for multiple measurement groups.</li>
+      </ul>
+
+      <t>Since loopback support is required, and there is no adjacency
+      created over loopback interfaces to carry Adjacency Segment Identifier
+      (ASLA) information, the solution uses an IS-IS capability sub-TLV
+      similar to seamless BFD discriminators <xref target="RFC7883"/>. This
+      approach allows the advertisement of measurement group membership information
+      in the Router Capability TLV, which is propagated across area
+      boundaries.</t>
     </section>
-    
+
     <section>
-      <name>List Examples</name>
-      
-      <section>
-        <name>Simple Unordered (Bullet) List</name>
-        <t>Text before the list</t>
-        <ul spacing="normal">
-          <li>First bullet</li>
-          <li>Second bullet</li>
-        </ul>
-        <t>Text after the list.</t>
-      </section>
-      
-      <section>
-        <name>Ordered List With Lowercase Letters in Brackets Instead of Numbers</name>
-        <ol type="(%c)"> <!-- https://authors.ietf.org/en/rfcxml-vocabulary#type-1 -->
-          <li>List item (a)</li>
-          <li>List item (b)</li>
-        </ol>
-      </section>
-      
-      <section>
-        <name>Continuous Numbering in a List That is Split by Text or Sections</name>
-        <!-- The following two lists render as 
-        Text to introduce the list
-        REQ1: This will be "REQ1:"
-        REQ2: This will be "REQ2:"
-        Some text in between
-        REQ3: This will be "REQ3:"
-        REQ4: This will be "REQ4:"
-        -->
-        <t>Text to introduce the list</t>
-        <ol type="REQ%d:" group="reqs">  <!-- value of group is user-defined https://authors.ietf.org/en/rfcxml-vocabulary#group -->
-          <li>This will be "REQ1:"</li>
-          <li>This will be "REQ2:"</li>
-        </ol>
-        <t>Some text in between</t>
-        <ol type="REQ%d:" group="reqs">  <!-- same value of group as before -->
-          <li>This will be "REQ3:"</li>
-          <li>This will be "REQ4:"</li>
-        </ol>
-        <section>
-          <name>Section in-between</name>
-          <t>More text in-between</t>
-          <ol type="REQ%d:" group="reqs">  <!-- same value of group as before -->
-            <li>This will be REQ5:</li>
-            <li>This will be REQ6:</li>
-          </ol>
-        </section>
-      </section>
-      
-      <section>
-        <name>Definition Lists</name> <!-- https://authors.ietf.org/en/rfcxml-vocabulary#dl -->
-        <dl newline="true"> <!-- https://authors.ietf.org/en/rfcxml-vocabulary#newline -->
-        <!-- Omit newline="true" if you want each definition to start on the same line as the corresponding term -->
-          <dt>First term:</dt>
-          <dd>Definition of the first term</dd>
-          <dt>Second term:</dt>
-          <dd>Definition of the second term</dd>
-        </dl>
-      </section>
-      
-      <section>
-        <name>Lists With Hanging Labels</name>
-        <t>the list item is indented the value of indent</t>  <!--  https://authors.ietf.org/en/rfcxml-vocabulary#indent -->
-        <dl newline="true" spacing="normal" indent="8">
-        <!-- Custom indent of 8 with the defintion starting on a new line after the term -->
-          <dt>short</dt>
-          <dd>With a label shorter than the indent.</dd>
-          <dt>fantastically long label</dt>
-          <dd>With a label longer than the indent.</dd>
-        </dl>
-      </section>
-    </section>
-    
-    <section>
-      <name>Tables</name>
-      <table> <!-- https://authors.ietf.org/rfcxml-vocabulary#table -->
-        <thead> <!-- https://authors.ietf.org/rfcxml-vocabulary#thead -->
-        <!-- A table header is optional -->
-          <tr><th>Column 1</th><th>Column 2</th><th>Column 3</th></tr>
-        </thead>
-        <tbody> <!-- https://authors.ietf.org/rfcxml-vocabulary#tbody -->
-        <!-- A table body is required -->
-          <tr><td align="left">Left cell</td><td colspan="2">Colspan cell</td></tr>
-          <!-- align can be right, left or center.  colspan and rowspan work as they do in HTML -->
-          <tr><td rowspan="2">Rowspan cell</td><td align="center">Center cell</td><td align="right">Right cell</td></tr>
-          <tr><td>Cell</td><td>Cell</td></tr>
-        </tbody>
-        <tfoot> <!-- https://authors.ietf.org/rfcxml-vocabulary#tfoot -->
-        <!-- A table footer is optional -->
-          <tr><td colspan="3">Colspan footer</td></tr>
-        </tfoot>
-      </table>
-    </section>
-    
-    <section>
-      <name>Source Code Examples</name>
-      <t>This is an example C program</t>
-        <sourcecode name="helloworld.c" type="c" markers="true"> <!-- https://authors.ietf.org/en/rfcxml-vocabulary#sourcecode -->
-          <![CDATA[
-#include <stdio.h>
-        
-int main() {
-  printf("Hello World");
-  return 0;
-}
-          ]]>
-        </sourcecode>
-        <!-- markers="true" means that the rendered file will have <CODE BEGINS> and <CODE ENDS> added. -->
-        <!-- The CDATA wrapper is optional but is strongly recommended to avoid any unexpected processing
-             or issues with angle brackets. 
-             <sourcecode></sourcecode> can optionally be wrapped in <figure></figure> -->
-    </section>
-    
-    <section anchor="adding-diagrams">
-    <!-- anchor is optional and used for reference below -->
-      <name>Adding Diagrams</name>
+      <name>IS-IS Active Measurement Protocol Measurement Group Sub-TLV</name>
+      <t>This document defines a new IS-IS capability sub-TLV for advertising
+      Active Measurement Protocol (AMP) measurement group membership. The sub-TLV is
+      carried in the IS-IS Router Capability TLV (TLV 242) as defined in
+      <xref target="RFC7981"/>.</t>
+
+      <t>The Active Measurement Protocol Measurement Group sub-TLV has the following
+      format:</t>
+
       <figure>
-        <name>A Box</name>
-        <artset>  <!-- https://authors.ietf.org/en/rfcxml-vocabulary#artset -->
-        <!-- This <artset> includes two <artwork> elements, each of a different type.  Both are not 
-             always needed.  See https://authors.ietf.org/e/en/adding-diagrams -->
-          <artwork type="svg" name="https://www.rfc-editor.org/materials/format/svg/stream.svg">  <!-- https://authors.ietf.org/en/rfcxml-vocabulary#artwork -->
-            <!-- Inserting the SVG like this is only one way of adding an SVG diagram.  Another way is 
-                 to use the src attribute to point to an external file or URI.  The name attribute 
-                 recommends a filename to use if the artwork is extracted to a file. -->
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 71 40">
-              <g>
-                <title>Layer 1</title>
-                <rect x="4.5" y="6.5" width="61.0" height="27.0" stroke="black" stroke-width="1.0" stroke-linecap="square" stroke-linejoin="miter" fill="none" />
-                <text x="33.883" text-anchor="middle" y="26.559">
-                  <tspan fill="black" font-size="13.0">A box</tspan>
-                </text>
-              </g>
-            </svg>
-          </artwork>
-          <artwork type="ascii-art" name="box.txt">
-            <![CDATA[
- +--------+
- | A box  |
- +--------+          
-            ]]>
-          </artwork>
-        </artset>      
+        <name>AMP Measurement Group Sub-TLV Format</name>
+        <artwork type="ascii-art" name="amp-mesh-tlv.txt">
+          <![CDATA[
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|     Type      |    Length     | Protocol Flags|   Reserved    |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                                                               |
+|              IPv4 or IPv6 Host Address (4 or 16 octets)      |
+|                                                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+          ]]>
+        </artwork>
       </figure>
+
+      <t>Fields:</t>
+      <dl newline="true" spacing="normal">
+        <dt>Type:</dt>
+        <dd>TBD (to be assigned by IANA)</dd>
+
+        <dt>Length:</dt>
+        <dd>1 octet. The length of the value field in octets. For IPv4
+        addresses, the length MUST be 6. For IPv6 addresses, the length
+        MUST be 18.</dd>
+
+        <dt>Protocol Flags:</dt>
+        <dd>1 octet. A bit field indicating which Active Measurement
+        Protocols are supported on this endpoint. Bit definitions are
+        specified in <xref target="protocol-flags"/>.</dd>
+
+        <dt>Reserved:</dt>
+        <dd>1 octet. MUST be set to zero on transmission and MUST be
+        ignored on receipt.</dd>
+
+        <dt>IPv4 or IPv6 Host Address:</dt>
+        <dd>4 octets for IPv4 or 16 octets for IPv6. The interface address
+        (IPv4 or IPv6) that identifies this endpoint's membership in the
+        measurement groups indicated by the Protocol Flags field. This address MAY
+        be associated with a physical interface or a loopback interface.</dd>
+      </dl>
+
+      <t>Multiple instances of this sub-TLV MAY be included in the Router
+      Capability TLV to advertise multiple endpoints, each potentially
+      supporting different combinations of Active Measurement Protocols.</t>
+
+      <section anchor="protocol-flags">
+        <name>Protocol Flags</name>
+        <t>The Protocol Flags field is an 8-bit field where each bit
+        indicates support for a specific Active Measurement Protocol. The
+        bit assignments are as follows:</t>
+
+        <table>
+          <thead>
+            <tr>
+              <th align="left">Bit</th>
+              <th align="left">Protocol</th>
+              <th align="left">Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align="left">0</td>
+              <td align="left">TWAMP</td>
+              <td align="left">RFC 5357</td>
+            </tr>
+            <tr>
+              <td align="left">1</td>
+              <td align="left">STAMP</td>
+              <td align="left">RFC 8762</td>
+            </tr>
+            <tr>
+              <td align="left">2-7</td>
+              <td align="left">Reserved</td>
+              <td align="left">For future assignment by IANA</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <t>Bits are numbered from 0 (most significant bit) to 7 (least
+        significant bit). A bit value of 1 indicates that the endpoint
+        supports the corresponding protocol for the measurement group identified by
+        the Host Address. A bit value of 0 indicates that the endpoint does
+        not support that protocol.</t>
+
+        <t>Multiple bits MAY be set to indicate that the endpoint supports
+        multiple protocols, meaning the same interface address is used for
+        multiple measurement groups.</t>
+      </section>
     </section>
-    
+
     <section>
-      <name>Using xref</name>
-      <t>A reference to <xref target="adding-diagrams"/></t>
-      <t>A reference to <xref target="RFC8174" sectionFormat="of" section="2"/></t>
+      <name>Operations</name>
+      <t>A router that participates in one or more Active Measurement
+      Protocol measurement groups MUST advertise the AMP Measurement Group sub-TLV in its
+      Router Capability TLV. For each endpoint (interface address) that
+      participates in measurement groups, the router MUST include one instance of
+      the sub-TLV with the appropriate Protocol Flags bits set.</t>
+
+      <t>If an endpoint supports multiple protocols (e.g., both TWAMP and
+      STAMP), the router MAY either:</t>
+      <ul spacing="normal">
+        <li>Include a single sub-TLV instance with multiple Protocol Flags
+        bits set, or</li>
+        <li>Include multiple sub-TLV instances, each with a single Protocol
+        Flags bit set.</li>
+      </ul>
+
+      <t>Routers receiving the AMP Measurement Group sub-TLV MUST process the
+      information to build their measurement group membership database. This
+      information is used to discover other routers participating in the
+      same measurement groups, enabling automatic configuration of measurement
+      sessions.</t>
+
+      <t>The Router Capability TLV, and thus the AMP Measurement Group sub-TLV, is
+      propagated across IS-IS area boundaries when area leaking is
+      configured, satisfying the requirement for cross-area discovery.</t>
+
+      <t>If a router's measurement group membership changes, it MUST update its
+      Router Capability TLV advertisement accordingly. Routers receiving
+      updated information MUST process the changes and update their mesh
+      group membership database.</t>
     </section>
-    
+
     <section anchor="IANA">
     <!-- All drafts are required to have an IANA considerations section. See RFC 8126 for a guide.-->
       <name>IANA Considerations</name>
-      <t>This memo includes no request to IANA.</t>
+
+      <section>
+        <name>IS-IS Router Capability TLV Sub-TLVs</name>
+        <t>IANA is requested to assign a new sub-TLV type from the "IS-IS
+        Router Capability TLV sub-TLVs" registry for the Active Measurement
+        Protocol Measurement Group sub-TLV defined in this document.</t>
+      </section>
+
+      <section>
+        <name>AMP Measurement Group Protocol Flags Registry</name>
+        <t>IANA is requested to create a new registry called "AMP Measurement Group
+        Protocol Flags" under the "Interior Gateway Protocol (IGP)
+        Parameters" registry group. The registry should track bit assignments
+        for Active Measurement Protocols in the Protocol Flags field of the
+        AMP Measurement Group sub-TLV.</t>
+
+        <t>The initial assignments are:</t>
+        <table>
+          <thead>
+            <tr>
+              <th align="left">Bit</th>
+              <th align="left">Protocol</th>
+              <th align="left">Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align="left">0</td>
+              <td align="left">TWAMP</td>
+              <td align="left">RFC 5357, this document</td>
+            </tr>
+            <tr>
+              <td align="left">1</td>
+              <td align="left">STAMP</td>
+              <td align="left">RFC 8762, this document</td>
+            </tr>
+            <tr>
+              <td align="left">2-7</td>
+              <td align="left">Unassigned</td>
+              <td align="left"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <t>Future assignments are to be made through IETF Review <xref target="RFC8126"/>.</t>
+      </section>
     </section>
-    
+
     <section anchor="Security">
       <!-- All drafts are required to have a security considerations section. See RFC 3552 for a guide. -->
       <name>Security Considerations</name>
-      <t>This document should not affect the security of the Internet.</t>
+      <t>This document defines a mechanism for advertising measurement group
+      membership in IS-IS. The security considerations for IS-IS as
+      specified in <xref target="RFC1195"/> and <xref target="RFC5304"/>
+      apply.</t>
+
+      <t>An attacker that can inject false AMP Measurement Group sub-TLVs could
+      cause routers to attempt to establish measurement sessions with
+      incorrect endpoints, potentially leading to:</t>
+      <ul spacing="normal">
+        <li>Failed measurement sessions</li>
+        <li>Misconfiguration of measurement infrastructure</li>
+        <li>Resource exhaustion if many false endpoints are advertised</li>
+      </ul>
+
+      <t>To mitigate these risks, implementations SHOULD authenticate IS-IS
+      protocol exchanges using the mechanisms defined in <xref target="RFC5304"/>
+      for IS-IS authentication. Additionally, operators SHOULD configure
+      appropriate access controls and monitoring to detect and prevent
+      unauthorized advertisements.</t>
+
+      <t>The information advertised in the AMP Measurement Group sub-TLV reveals
+      which routers are participating in measurement groups and which
+      interface addresses are used for measurement purposes. This information
+      may be considered sensitive in some deployments. Operators should
+      consider the implications of this information disclosure when deploying
+      this mechanism.</t>
     </section>
-    
+
     <!-- NOTE: The Acknowledgements and Contributors sections are at the end of this template -->
   </middle>
 
@@ -419,60 +522,32 @@ int main() {
       <name>References</name>
       <references>
         <name>Normative References</name>
-        
+
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7883.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7981.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8126.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
-        <!-- The recommended and simplest way to include a well known reference -->
-        
+
       </references>
- 
+
       <references>
         <name>Informative References</name>
-       
-        <reference anchor="RFC2119" target="https://www.rfc-editor.org/info/rfc2119">
-        <!-- Manually added reference -->
-          <front>
-            <title>Key words for use in RFCs to Indicate Requirement Levels</title>
-            <author initials="S." surname="Bradner" fullname="S. Bradner">
-              <organization/>
-            </author>
-            <date year="1997" month="March"/>
-            <abstract>
-              <t>In many standards track documents several words are used to signify the requirements in the specification. These words are often capitalized. This document defines these words as they should be interpreted in IETF documents. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.
-              </t>
-            </abstract>
-          </front>
-          <seriesInfo name="BCP" value="14"/>
-          <seriesInfo name="RFC" value="2119"/>
-          <seriesInfo name="DOI" value="10.17487/RFC2119"/>
-        </reference>
+
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.1195.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5304.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5357.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8762.xml"/>
 
       </references>
     </references>
-    
-    <section>
-      <name>Appendix 1</name>
-      <t>This becomes an Appendix</t>
-    </section>
 
     <section anchor="Acknowledgements" numbered="false">
       <!-- an Acknowledgements section is optional -->
       <name>Acknowledgements</name>
-      <t>This template uses extracts from templates written by Pekka Savola, Elwyn Davies and 
-        Henrik Levkowetz.</t>
+      <t>The authors would like to thank the participants in the IETF
+      discussions that led to this document.</t>
     </section>
-    
-    <section anchor="Contributors" numbered="false">
-      <!-- a Contributors section is optional -->
-      <name>Contributors</name>
-      <t>Thanks to all of the contributors.</t>
-      <contact fullname="Jane Doe" initials="J" surname="Doe"><!-- https://authors.ietf.org/en/rfcxml-vocabulary#contact-->
-        <!-- including contact information for contributors is optional -->
-        <organization>Acme</organization>
-        <address>
-          <email>jdoe@example.com</email>
-        </address>
-      </contact>
-    </section>
-    
+
  </back>
 </rfc>
