@@ -372,12 +372,12 @@
             <tr>
               <td align="left">0</td>
               <td align="left">TWAMP</td>
-              <td align="left">RFC 5357</td>
+              <td align="left"><xref target="RFC5357"/></td>
             </tr>
             <tr>
               <td align="left">1</td>
               <td align="left">STAMP</td>
-              <td align="left">RFC 8762</td>
+              <td align="left"><xref target="RFC8762"/></td>
             </tr>
             <tr>
               <td align="left">2-7</td>
@@ -464,12 +464,12 @@
             <tr>
               <td align="left">0</td>
               <td align="left">TWAMP</td>
-              <td align="left">RFC 5357, this document</td>
+              <td align="left"><xref target="RFC5357"/>, this document</td>
             </tr>
             <tr>
               <td align="left">1</td>
               <td align="left">STAMP</td>
-              <td align="left">RFC 8762, this document</td>
+              <td align="left"><xref target="RFC8762"/>, this document</td>
             </tr>
             <tr>
               <td align="left">2-7</td>
