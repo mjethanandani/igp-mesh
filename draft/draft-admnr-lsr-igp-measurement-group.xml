@@ -184,7 +184,7 @@
           <!-- Can use two letter country code -->
         </postal>
         <phone>Phone</phone>
-        <email>rnstrina@equinix.com</email>
+        <email>nstrina@equinix.com</email>
         <!-- Can have more than one <email> element -->
         <uri>URI</uri>
       </address>
@@ -213,7 +213,7 @@
     <keyword>IS-IS</keyword>
     <keyword>TWAMP</keyword>
     <keyword>STAMP</keyword>
-    <keyword>mesh</keyword>
+    <keyword>measurement</keyword>
     <keyword>discovery</keyword>
     <!-- Multiple keywords are allowed.  Keywords are incorporated
          into HTML output files for use by search engines. -->
@@ -270,9 +270,12 @@
 
     <section>
       <name>Use Case</name>
-      <t>At a high level, different IGP routers participate in different mesh
-      groups. For example, measurement group A may be used for TWAMP, measurement group B
-      for STAMP, and measurement group C for another purpose.</t>
+      <t>
+	At a high level, different IGP routers participate in
+	different measurement groups. For example, measurement group A
+	may be used for TWAMP, measurement group B for STAMP, and
+	measurement group C for another purpose.
+      </t>
 
       <t>The requirements for measurement group discovery are:</t>
       <ul spacing="normal">
@@ -426,10 +429,13 @@
       propagated across IS-IS area boundaries when area leaking is
       configured, satisfying the requirement for cross-area discovery.</t>
 
-      <t>If a router's measurement group membership changes, it MUST update its
-      Router Capability TLV advertisement accordingly. Routers receiving
-      updated information MUST process the changes and update their mesh
-      group membership database.</t>
+      <t>
+	If a router's measurement group membership changes, it MUST
+	update its Router Capability TLV advertisement
+	accordingly. Routers receiving updated information MUST
+	process the changes and update their measurement group
+	membership database.
+      </t>
     </section>
 
     <section anchor="IANA">
