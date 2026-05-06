@@ -6,7 +6,7 @@ CURRENT_USER := $(USER)
 leftover=$(shell docker ps -a -q -f status=exited)
 leftover-image=$(shell docker images -a -q)
 username=$(CURRENT_USER)
-image=$(username)/ietf-bgp-yang
+image=$(username)/igp-measurement
 
 all: container
 
