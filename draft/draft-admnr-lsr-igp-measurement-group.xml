@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     draft-rfcxml-general-template-annotated-00
-
-     This template includes examples of most of the features of RFCXML
-     with comments explaining how to customise them, and examples of how
-     to achieve specific formatting.
-
-     Documentation is at
-     https://authors.ietf.org/en/templates-and-schemas
--->
 <?xml-model href="rfc7991bis.rnc"?>
-<!-- Required for schema validation and schema-aware editing -->
 <!-- <?xml-stylesheet type="text/xsl" href="rfc2629.xslt" ?> -->
-<!-- This third-party XSLT can be enabled for direct transformations
-     in XML processors, including most browsers -->
 
 <!DOCTYPE rfc [
   <!ENTITY nbsp    "&#160;">
@@ -21,201 +8,102 @@
   <!ENTITY nbhy   "&#8209;">
   <!ENTITY wj     "&#8288;">
 ]>
-<!-- If further character entities are required then they should be
-     added to the DOCTYPE above. Use of an external entity file is
-     not recommended. -->
 
 <rfc
   xmlns:xi="http://www.w3.org/2001/XInclude"
   category="std"
   docName="draft-admnr-lsr-igp-measurement-group-latest"
   ipr="trust200902"
-  obsoletes=""
-  updates=""
   consensus="true"
   submissionType="IETF"
   xml:lang="en"
   version="3">
-  <?rfc toc="yes"?>
-<!--
-    * docName should be the name of your draft * category should be
-    one of std, bcp, info, exp, historic * ipr should be one of
-    trust200902, noModificationTrust200902, noDerivativesTrust200902,
-    pre5378Trust200902 * updates can be an RFC number as NNNN *
-    obsoletes can be an RFC number as NNNN
--->
 
   <front>
-    <title abbrev="IGP Measurement Group">Advertising IGP Measurement Group using TLV</title>
-    <!-- https://authors.ietf.org/en/rfcxml-vocabulary#title-4 -->
-    <!--  The abbreviated title is required if the full title is longer
-          than 39 characters -->
-
-    <seriesInfo name="Internet-Draft" value="draft-admnr-lsr-igp-measurement-group-latest"/>
-    <!-- https://authors.ietf.org/en/rfcxml-vocabulary#seriesinfo -->
-    <!-- Set value to the name of the draft  -->
+    <title abbrev="IGP Active Measurement Group">Advertising IGP Active Measurement Groups in Router Capabilities</title>
 
     <author fullname="Mahesh Jethanandani" initials="M" role="editor" surname="Jethanandani">
-    <!-- https://authors.ietf.org/en/rfcxml-vocabulary#author -->
-    <!-- initials should not include an initial for the surname -->
-    <!-- role="editor" is optional -->
-    <!-- Can have more than one author -->
-
-    <!-- all of the following elements are optional -->
-    <organization>Arrcus, Inc</organization>
-    <!-- https://authors.ietf.org/en/rfcxml-vocabulary#organization -->
-    <address>
-      <!-- https://authors.ietf.org/en/rfcxml-vocabulary#address -->
-      <postal>
-        <!-- Reorder these if your country does things differently -->
-        <street>2077 Gateway Place, Suite 400</street>
-        <city>San Jose</city>
-        <region>CA</region>
-        <code>95110</code>
-        <country>US</country>
-          <!-- Can use two letter country code -->
-      </postal>
-      <email>mjethanandani@gmail.com</email>
-      <!-- Can have more than one <email> element -->
-      <uri>URI</uri>
-    </address>
+      <organization>Arrcus, Inc</organization>
+      <address>
+        <postal>
+          <street>2077 Gateway Place, Suite 400</street>
+          <city>San Jose</city>
+          <region>CA</region>
+          <code>95110</code>
+          <country>US</country>
+        </postal>
+        <email>mjethanandani@gmail.com</email>
+      </address>
     </author>
 
-   <author fullname="Derek Yeung" initials="D" role="editor" surname="Yeung">
-    <!-- https://authors.ietf.org/en/rfcxml-vocabulary#author -->
-    <!-- initials should not include an initial for the surname -->
-    <!-- role="editor" is optional -->
-    <!-- Can have more than one author -->
-
-    <!-- all of the following elements are optional -->
-    <organization>Arrcus, Inc</organization>
-    <!-- https://authors.ietf.org/en/rfcxml-vocabulary#organization -->
-    <address>
-      <!-- https://authors.ietf.org/en/rfcxml-vocabulary#address -->
-      <postal>
-        <!-- Reorder these if your country does things differently -->
-        <street>2077 Gateway Place, Suite 400</street>
-        <city>San Jose</city>
-        <region>CA</region>
-        <code>95110</code>
-        <country>US</country>
-          <!-- Can use two letter country code -->
-      </postal>
-      <email>derek@arrcus.com</email>
-      <!-- Can have more than one <email> element -->
-      <uri>URI</uri>
-    </address>
+    <author fullname="Derek Yeung" initials="D" role="editor" surname="Yeung">
+      <organization>Arrcus, Inc</organization>
+      <address>
+        <postal>
+          <street>2077 Gateway Place, Suite 400</street>
+          <city>San Jose</city>
+          <region>CA</region>
+          <code>95110</code>
+          <country>US</country>
+        </postal>
+        <email>derek@arrcus.com</email>
+      </address>
     </author>
 
     <author fullname="Acee Lindem" initials="A" role="editor" surname="Lindem">
-    <!-- https://authors.ietf.org/en/rfcxml-vocabulary#author -->
-    <!-- initials should not include an initial for the surname -->
-    <!-- role="editor" is optional -->
-    <!-- Can have more than one author -->
-
-    <!-- all of the following elements are optional -->
-    <organization>Arrcus, Inc</organization>
-    <!-- https://authors.ietf.org/en/rfcxml-vocabulary#organization -->
-    <address>
-      <!-- https://authors.ietf.org/en/rfcxml-vocabulary#address -->
-      <postal>
-        <!-- Reorder these if your country does things differently -->
-        <street>301 Midenhall Way</street>
-        <city>Cary</city>
-        <region>NC</region>
-        <code>27513</code>
-        <country>US</country>
-          <!-- Can use two letter country code -->
+      <organization>Arrcus, Inc</organization>
+      <address>
+        <postal>
+          <street>301 Midenhall Way</street>
+          <city>Cary</city>
+          <region>NC</region>
+          <code>27513</code>
+          <country>US</country>
         </postal>
         <email>acee.ietf@gmail.com</email>
-        <!-- Can have more than one <email> element -->
-        <uri>URI</uri>
       </address>
     </author>
 
     <author fullname="Reshad Rahman" initials="R" role="editor" surname="Rahman">
-    <!-- https://authors.ietf.org/en/rfcxml-vocabulary#author -->
-    <!-- initials should not include an initial for the surname -->
-    <!-- role="editor" is optional -->
-    <!-- Can have more than one author -->
-
-    <!-- all of the following elements are optional -->
-    <organization>Equinix, Inc</organization>
-    <!-- https://authors.ietf.org/en/rfcxml-vocabulary#organization -->
-    <address>
-      <!-- https://authors.ietf.org/en/rfcxml-vocabulary#address -->
-      <postal>
-        <!-- Reorder these if your country does things differently -->
-        <country>CA</country>
-          <!-- Can use two letter country code -->
+      <organization>Equinix, Inc</organization>
+      <address>
+        <postal>
+          <country>CA</country>
         </postal>
-        <phone>Phone</phone>
         <email>reshad@yahoo.com</email>
-        <!-- Can have more than one <email> element -->
-        <uri>URI</uri>
       </address>
     </author>
 
     <author fullname="Nico Strina" initials="N" surname="Strina">
-    <!-- https://authors.ietf.org/en/rfcxml-vocabulary#author -->
-    <!-- initials should not include an initial for the surname -->
-    <!-- role="editor" is optional -->
-    <!-- Can have more than one author -->
-
-    <!-- all of the following elements are optional -->
-    <organization>Equinix, Inc</organization>
-    <!-- https://authors.ietf.org/en/rfcxml-vocabulary#organization -->
-    <address>
-      <!-- https://authors.ietf.org/en/rfcxml-vocabulary#address -->
-      <postal>
-        <!-- Reorder these if your country does things differently -->
-        <country>US</country>
-          <!-- Can use two letter country code -->
+      <organization>Equinix, Inc</organization>
+      <address>
+        <postal>
+          <country>US</country>
         </postal>
-        <phone>Phone</phone>
         <email>nstrina@equinix.com</email>
-        <!-- Can have more than one <email> element -->
-        <uri>URI</uri>
       </address>
     </author>
 
     <date/>
-    <!-- https://authors.ietf.org/en/rfcxml-vocabulary#date -->
-    <!-- On draft submission:
-         * If only the current year is specified, the current day and
-           month will be used.
-         * If the month and year are both specified and are the current
-           ones, the current day will
-           be used
-         * If the year is not the current one, it is necessary to
-           specify at least a month and day="1" will be used.
-    -->
-
     <area>Routing</area>
-    <workgroup>Internet Engineering Task Force</workgroup>
-    <!-- "Internet Engineering Task Force" is fine for individual
-          submissions.  If this element is
-          not present, the default is "Network Working Group", which
-          is used by the RFC Editor as
-          a nod to the history of the RFC Series. -->
+    <workgroup>Link State Routing</workgroup>
     <keyword>IGP</keyword>
     <keyword>IS-IS</keyword>
     <keyword>TWAMP</keyword>
     <keyword>STAMP</keyword>
     <keyword>measurement</keyword>
     <keyword>discovery</keyword>
-    <!-- Multiple keywords are allowed.  Keywords are incorporated
-         into HTML output files for use by search engines. -->
-
     <abstract>
       <t>
         This document defines an IS-IS capability sub-TLV for advertising
         measurement group membership for Active Measurement Protocols (AMPs) such as
         TWAMP and STAMP. The mechanism allows IGP routers to discover other
         routers participating in different measurement groups, enabling automatic
-        discovery of measurement endpoints across IGP areas. The solution uses
-        interface addresses (IPv4 or IPv6) to identify measurement group membership,
-        where the same interface address may be used for multiple measurement groups.
+        discovery of measurement endpoints throughout an IS-IS routing
+        domain. The solution uses
+        a Group ID to identify measurement group membership,
+        where the same interface address (IPv4 or IPv6) may be used for multiple
+        measurement groups.
       </t>
     </abstract>
 
@@ -224,37 +112,35 @@
   <middle>
 
     <section>
-    <!-- The default attributes for <section> are numbered="true" and toc="default" -->
       <name>Introduction</name>
       <t>
         In network deployments, different IGP routers may participate in
         different measurement groups for various purposes. For example, one measurement group
-        may be used for TWAMP (Two-Way Active Measurement Protocol), another
-        for STAMP (Simple Two-Way Active Measurement Protocol), and yet another
-        for other operational purposes.
+        may be used for TWAMP (Two-Way Active Measurement Protocol) <xref target="RFC5357"/>,
+        another for STAMP (Simple Two-Way Active Measurement Protocol) <xref target="RFC8762"/>,
+        and yet another for other operational purposes.
       </t>
 
       <t>
         To enable automatic discovery and configuration of these measurement groups,
         there is a need for IGP routers to discover which other routers are
         participating in which measurement groups. This discovery mechanism must work
-        whether the participating routers are in the same IGP area or not,
-        which implies that the information must be leakable across area
-        boundaries.
+        whether or not the participating routers are in the same IS-IS
+        level, which implies that the membership information must be
+        flooded domain-wide.
       </t>
 
       <t>
         This document defines an IS-IS capability sub-TLV, similar to the
         seamless BFD discriminators mechanism defined in <xref target="RFC7883"/>,
         that allows routers to advertise their measurement group membership. The
-        mechanism uses interface addresses (IPv4 or IPv6) to identify measurement group
-        membership, where the interface address may be associated with either a
-        physical interface or a loopback interface. The same interface address
+        mechanism uses Group ID to identify measurement group
+        membership, where the interface address (IPv4 or IPv6) may be associated with
+        either a physical interface or a loopback interface. The same interface address
         may be used to indicate membership in multiple measurement groups.
       </t>
 
       <section anchor="requirements">
-      <!-- anchor is an optional attribute -->
         <name>Requirements Language</name>
         <t>
           The key words "MUST", "MUST NOT", "REQUIRED", "SHALL",
@@ -265,75 +151,172 @@
           all capitals, as shown here.
         </t>
       </section>
+
+      <section anchor="terminology">
+        <name>Terminology</name>
+        <t>This document uses the following terms:</t>
+        <dl newline="false" spacing="normal">
+          <dt>Active Measurement Protocol (AMP):</dt>
+          <dd>
+            A protocol used to actively measure performance between two IP
+            endpoints, for example TWAMP <xref target="RFC5357"/> or STAMP
+            <xref target="RFC8762"/>.
+          </dd>
+
+          <dt>Active Measurement Group (AMG):</dt>
+          <dd>
+            A set of IP endpoints that are configured to perform active
+            measurement with one another using a single AMP, a single IP
+            address family, and, optionally, a set of non-default AMP
+            parameters. An AMG is identified by a Group ID and is configured
+            within a single administrative domain. Separate AMGs are used
+            for different AMPs and for different address families.
+          </dd>
+
+          <dt>Group ID:</dt>
+          <dd>
+            The 2-octet identifier of an AMG, in the range 1 through 65534.
+            A distinct Group ID is required for each AMG within the
+            administrative domain in which the AMGs are configured.
+          </dd>
+
+          <dt>IP endpoint (endpoint):</dt>
+          <dd>
+            An IPv4 or IPv6 interface address, associated with either a
+            physical interface or a loopback interface, through which a
+            router participates in one or more AMGs.
+          </dd>
+
+          <dt>AMP session:</dt>
+          <dd>
+            A measurement session established between two IP endpoints of a
+            given AMG, using the AMP associated with that AMG. An AMP
+            session is identified by the AMG and the pair of IP endpoints.
+          </dd>
+
+          <dt>Administrative domain:</dt>
+          <dd>
+            The scope within which AMGs and their Group IDs are configured
+            consistently. This is normally a single IGP domain; see
+            <xref target="active-measurement-groups"/>.
+          </dd>
+        </dl>
+
+        <t>
+          The IS-IS Router CAPABILITY TLV, its S and D flags, and the
+          associated elements of procedure are as specified in
+          <xref target="RFC7981"/>.
+        </t>
+      </section>
     </section>
 
     <section>
       <name>Use Case</name>
       <t>
 	At a high level, different IGP routers participate in
-	different measurement groups. For example, measurement group A
-	may be used for TWAMP, measurement group B for STAMP, and
-	measurement group C for another purpose.
+	different measurement groups. For example, measurement group 1
+	may be used for TWAMP, measurement group 2 for STAMP, and
+	measurement group 3 for another purpose.
       </t>
 
       <t>The requirements for measurement group discovery are:</t>
       <ul spacing="normal">
         <li>
-          IGP routers MUST be able to discover which routers are
-          participating in which measurement groups.
+          IGP routers need to discover which routers are participating in
+          which measurement groups.
         </li>
         <li>
-          Discovery MUST work whether participating routers are in the same
-          IGP area or not, which implies that the information MUST be leakable
-          across area boundaries.
+          Discovery must work whether or not the participating routers are
+          in the same IS-IS level, which implies that the membership
+          information must be flooded domain-wide.
         </li>
         <li>
-          An interface address (IPv4 or IPv6) is used to identify the
-          membership of a particular measurement group.
+          A Group ID is used to identify the membership of a particular
+          measurement group.
         </li>
         <li>
-          The interface address MAY be associated with either a physical
+          The interface address can be associated with either a physical
           interface or a loopback interface.
         </li>
         <li>
-          The same interface address MAY be used for multiple measurement groups.
+          The same interface address (IPv4 or IPv6) can be used for
+          multiple measurement groups.
+        </li>
+        <li>
+          Unique active measurement parameters may be associated with a
+          measurement group. For example, a different STAMP UDP port and
+          minimum receive interval can be associated with a measurement
+          group allowing IGP routers in the same measurement group to use
+          non-default parameter values. Distribution of these parameters is
+          out of scope for this document; see
+          <xref target="active-measurement-groups"/>.
+        </li>
+        <li>
+          AMG membership should be discoverable across IGP domains.
         </li>
       </ul>
-
-      <t>
-        Since loopback support is required, and there is no adjacency
-        created over loopback interfaces to carry Adjacency Segment Identifier
-        (ASLA) information, the solution uses an IS-IS capability sub-TLV
-        similar to seamless BFD discriminators <xref target="RFC7883"/>. This
-        approach allows the advertisement of measurement group membership information
-        in the Router Capability TLV, which is propagated across area
-        boundaries.
-      </t>
     </section>
 
-    <section>
-      <name>IS-IS Active Measurement Protocol Measurement Group Sub-TLV</name>
+    <section anchor="active-measurement-groups">
+      <name>Active Measurement Groups</name>
+      <t>
+        Each AMG supported by an IGP router is identified
+        by a Group ID. Each AMG has an associated IP endpoint, AMP, and IP
+        address family. IGP routers will discover measurement
+        partners in common AMGs identified by Group ID and
+        attempt to establish AMP sessions in the AMG.
+        Additionally, unique non-default parameters may
+        be associated with an AMP. For example, the UDP ports
+        supported by STAMP may be associated with an AMG.
+      </t>
+      <t>
+        AMGs and their Group IDs are configured within a single administrative
+        domain. This is normally a single IGP domain unless inter-domain
+        discovery is required (refer to
+        <xref target="Inter-Domain-Discovery"/>). Each AMG
+        will have an associated AMP and optionally non-default parameters
+        associated with the AMG. The AMP and non-default parameters
+        are not advertised in the IGPs as the protocol extensions specified herein
+        are solely to discover the IP endpoints participating in the AMG. Assuring
+        consistent configuration of the AMP and associated non-default AMP
+        parameters is beyond the scope of this specification. Distinct AMGs
+        are required for distinct AMPs and for distinct IP address families.
+        It is understood that
+        unique AMGs will also be required for unique permutations of asymmetric
+        non-default parameters (e.g., different UDP ports for STAMP endpoints). However,
+        this is not seen as the predominant use case. 
+      </t>
+    </section>
+    <section anchor="amp-mg-sub-tlv">
+      <name>AMP Measurement Group Sub-TLV</name>
+      <t>
+        Since loopback support is required, and there is no adjacency
+        created over loopback interfaces to carry Application Specific Link
+        Attribute (ASLA) information, the solution defines an IS-IS capability sub-TLV
+        similar to seamless BFD discriminators <xref target="RFC7883"/>. This
+        approach allows the advertisement of measurement group membership information
+        in the Router CAPABILITY TLV, which is flooded domain-wide.
+      </t>
       <t>
         This document defines a new IS-IS capability sub-TLV for advertising
-        Active Measurement Protocol (AMP) measurement group membership. The sub-TLV is
-        carried in the IS-IS Router Capability TLV (TLV 242) as defined in
+        AMP measurement group membership. The sub-TLV is
+        carried in the IS-IS Router CAPABILITY TLV (TLV 242) as defined in
         <xref target="RFC7981"/>.
       </t>
 
-      <t>The Active Measurement Protocol Measurement Group sub-TLV has the following
-      format:</t>
+      <t>The AMP Measurement Group sub-TLV has the following format:</t>
 
       <figure>
-        <name>AMP Measurement Group Sub-TLV Format</name>
-        <artwork type="ascii-art" name="amp-mesh-tlv.txt">
+        <name>AMP Measurement Group sub-TLV Format</name>
+        <artwork type="ascii-art" name="amp-mg-tlv.txt">
           <![CDATA[
  0                   1                   2                   3
  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|     Type      |    Length     |   Group ID    | AMP Protocol  |
+|     Type      |    Length     |         Group ID              |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 |                                                               |
-|              IPv4 or IPv6 Host Address (4 or 16 octets)       |
+|          IPv4/IPv6 Endpoint Address (4 or 16 octets)          |
 |                                                               |
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
           ]]>
@@ -344,234 +327,263 @@
       <dl newline="true" spacing="normal">
         <dt>Type:</dt>
         <dd>
-          TBD (to be assigned by IANA)
+          TBD1 (to be assigned by IANA, see <xref target="IANA"/>)
         </dd>
 
         <dt>Length:</dt>
         <dd>
-          1 octet. The length of the value field in octets. For IPv4
+          1 octet. The length of the value field in octets. The address family
+          will be inferred from the length of the sub-TLV. For IPv4
           addresses, the length MUST be 6. For IPv6 addresses, the length
-          MUST be 18.
+          MUST be 18. A sub-TLV with a length other than 6 or 18 MUST be
+          considered malformed. Consistent with the handling of unsupported
+          sub-TLVs in Section 4 of <xref target="RFC7981"/>, a receiving
+          router MUST silently ignore such a sub-TLV and MUST continue
+          processing the other sub-TLVs carried in the Router CAPABILITY
+          TLV.
         </dd>
 
         <dt>Group ID:</dt>
         <dd>
-          Group ID used to associate the endpoint's membership with
-          other routers in the same group. An IS-IS router can advertise multiple
-          AMP Measurement Group sub-TLVs with different Group IDs. This will allow
-          Active Measurements sessions amongst multiple groups of IS-IS routers.
-        </dd>
-
-        <dt>AMP Protocol:</dt>
-        <dd>
-          1 octet. An identifier of the single Active Measurement Protocol
-          supported on this Group ID and IPv4/IPv6 Endpoint. Value
-          assignments are specified in <xref target="amp-protocol-values"/>.
+          2 octets. Group ID used to associate the endpoint's membership with
+          other routers in the AMG. An IS-IS router can
+          advertise multiple AMP Measurement Group sub-TLVs with different
+          Group IDs. Each AMG is associated with a single AMP and a single
+          IP address family, so a distinct Group ID is required for each AMG
+          within the administrative domain.
+          The Group ID values 0 and 65535 are reserved and MUST NOT be used
+          to identify an AMG; the range of Group IDs available to identify
+          an AMG is 1 through 65534. A router MUST ignore an AMP Measurement
+          Group sub-TLV advertising a reserved Group ID. These values are
+          reserved for possible future definition of well-known Group IDs;
+          no such Group IDs are defined by this document.
         </dd>
 
         <dt>IPv4/IPv6 Endpoint Address:</dt>
         <dd>
           4 octets for IPv4 or 16 octets for IPv6. The interface address
-          (IPv4 or IPv6) that identifies this endpoint's membership in the
-          measurement group indicated by the AMP Protocol field. This address MAY
+          (IPv4 or IPv6) that identifies this endpoint's usage in the
+          measurement group indicated by the Group ID. This address MAY
           be associated with a physical interface or a loopback interface.
         </dd>
       </dl>
 
       <t>
         Multiple instances of this sub-TLV MAY be included in the Router
-        Capability TLV to advertise multiple endpoints, each potentially
-        supporting different Group IDs, IP Endpoint Addresses, and Active
-        Measurement Protocols. Each sub-TLV instance carries a single AMP
-        Protocol value and is uniquely identified by the combination of
-        Group ID, IP Endpoint Address, and AMP Protocol value. A router that
-        supports multiple Active Measurement Protocols on the same Group ID
-        and IP Endpoint Address MUST advertise a separate sub-TLV instance
-        for each protocol. If multiple sub-TLVs have the same Group ID, IP
-        Endpoint Address, and AMP Protocol value, only the first will be
-        used.
+        CAPABILITY TLV, each advertising the membership of one IP endpoint
+        in one AMG. The AMP associated with an AMG
+        is not carried in the sub-TLV; it is determined from the local
+        configuration of the AMG identified by the Group ID, as described in
+        <xref target="active-measurement-groups"/>. Since an AMG is
+        associated with a single IP address family, all AMP Measurement
+        Group sub-TLVs advertising a given Group ID MUST carry an endpoint
+        address of that AMG's address family; a sub-TLV whose endpoint
+        address family does not match that of the AMG identified by the
+        Group ID MUST be ignored. Within a single Router
+        CAPABILITY TLV, if multiple sub-TLVs have the same Group ID and IP
+        endpoint, only the first is used. Since two such sub-TLVs convey
+        identical membership information, this has no effect on the
+        resulting measurement group membership. Section 3 of
+        <xref target="RFC7981"/> leaves the choice undefined when a
+        receiving system holds two copies of a Router CAPABILITY TLV from
+        the same system with conflicting information for a given sub-TLV;
+        no additional procedure is defined here.
       </t>
 
-      <section anchor="amp-protocol-values">
-        <name>AMP Protocol Values</name>
-        <t>
-          The AMP Protocol field is a single-octet value identifying the
-          Active Measurement Protocol supported for the Group ID and IP
-          Endpoint Address carried in this sub-TLV instance. The value
-          assignments are as follows:
-        </t>
+      <t>
+        The AMP Measurement Group sub-TLV MUST be advertised in an IS-IS
+        Router CAPABILITY TLV with the S flag set, so that the TLV is
+        flooded across the entire routing domain as specified in Section 2
+        of <xref target="RFC7981"/>. As specified in Section 3 of
+        <xref target="RFC7981"/>, a router advertising capabilities with
+        different flooding scopes originates a separate Router CAPABILITY
+        TLV for each scope; consequently, the AMP Measurement Group sub-TLV
+        MUST NOT be advertised in a Router CAPABILITY TLV with the S flag
+        clear. A receiving router processes the sub-TLV as described in
+        <xref target="operations"/>, subject to the elements of procedure in
+        Section 3 of <xref target="RFC7981"/>.
+      </t>
 
-        <table>
-          <thead>
-            <tr>
-              <th align="left">Value</th>
-              <th align="left">Protocol</th>
-              <th align="left">Reference</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td align="left">0</td>
-              <td align="left">Reserved</td>
-              <td align="left"></td>
-            </tr>
-            <tr>
-              <td align="left">1</td>
-              <td align="left">TWAMP</td>
-              <td align="left"><xref target="RFC5357"/></td>
-            </tr>
-            <tr>
-              <td align="left">2</td>
-              <td align="left">STAMP</td>
-              <td align="left"><xref target="RFC8762"/></td>
-            </tr>
-            <tr>
-              <td align="left">3-255</td>
-              <td align="left">Unassigned</td>
-              <td align="left">For future assignment by IANA</td>
-            </tr>
-          </tbody>
-        </table>
+      <t>
+        Leaking of the Router CAPABILITY TLV between IS-IS levels, including
+        the setting of the D bit when the TLV is leaked from Level 2 to
+        Level 1 and the prohibition on leaking a TLV with the D bit set from
+        Level 1 to Level 2, is performed as specified in Sections 2 and 3 of
+        <xref target="RFC7981"/>. This document defines no additional
+        leaking procedures. As specified in Section 4 of
+        <xref target="RFC7981"/>, a router performing the leaking leaks the
+        entire Router CAPABILITY TLV without change even if it does not
+        support the AMP Measurement Group sub-TLV; a leaking router
+        therefore MUST NOT remove AMP Measurement Group sub-TLVs from a TLV
+        it leaks.
+      </t>
 
-        <t>
-          A sub-TLV instance carries exactly one AMP Protocol value,
-          identifying the single protocol supported for the Group ID and
-          IP Endpoint Address advertised in that instance.
-        </t>
-
-        <t>
-          If an endpoint supports multiple protocols, the router advertises
-          this by including multiple sub-TLV instances that share the same
-          Group ID and IP Endpoint Address, each with a different AMP
-          Protocol value, meaning the same interface address is used for
-          multiple measurement groups.
-        </t>
-      </section>
+      <t>
+        As specified in Section 2 of <xref target="RFC7981"/>, a single IS-IS
+        Router CAPABILITY TLV carries at most 250 octets of sub-TLVs, and
+        more than one Router CAPABILITY TLV from the same source may be
+        present. A router with more measurement group memberships than will
+        fit in one TLV MUST advertise additional instances of the Router
+        CAPABILITY TLV, each with the S flag set. A receiving router MUST
+        process the AMP Measurement Group sub-TLVs carried in all such
+        instances as a single set of advertisements. See
+        <xref target="RFC9885"/> for the multi-part TLV semantics
+        corresponding to the MP value registered in
+        <xref target="IANA"/>.
+      </t>
    </section>
 
-    <section>
+    <section anchor="operations">
       <name>Operations</name>
       <t>
-        A router that participates in one or more Active Measurement
-        Protocol measurement groups MUST advertise the AMP Measurement Group sub-TLV in its
-        Router Capability TLV. For each endpoint (interface address) that
-        participates in a measurement group, the router MUST include an instance of
-        the sub-TLV with the appropriate AMP Protocol value set.
+        A router that participates in one or more AMGs MUST advertise the
+        AMP Measurement Group sub-TLV in its Router CAPABILITY TLV. For each
+        IP endpoint that participates in an AMG, the router MUST include an
+        instance of the sub-TLV with the Group ID corresponding to that
+        AMG.
       </t>
 
       <t>
-        If an endpoint supports multiple protocols (e.g., both TWAMP and
-        STAMP), the router advertises this by including multiple sub-TLV
-        instances that share the same Group ID and IP Endpoint Address,
-        each with a different AMP Protocol value.
+        If an endpoint participates in AMGs associated with different AMPs
+        (e.g., one AMG for TWAMP and another
+        for STAMP), the router advertises one sub-TLV instance per AMG, each
+        with the corresponding Group ID. The protocols themselves are not
+        advertised.
       </t>
 
       <t>
-        Routers receiving the AMP Measurement Group sub-TLV MUST process the
-        information to build their measurement group membership database. This
-        information is used to discover other routers participating in the
-        same measurement groups, enabling automatic configuration of measurement
-        sessions.
+        An AMP session is identified by the AMG and the pair of IP endpoints
+        between which it is established. A router MUST NOT establish more
+        than one AMP session for a given AMG between the same pair of IP
+        endpoints. Where two routers have IP endpoints in more than one
+        common AMG, a separate AMP session is established for each such AMG,
+        since distinct AMGs may be associated with distinct AMPs or with
+        distinct non-default AMP parameters.
       </t>
 
       <t>
-        Given that an IP endpoint may be used for multiple measurement groups
-        and AMP protocols, a router should only establish a single session of
-        a given protocol type between the same two pairs of IP endpoints (independent
-        of how many groups the endpoint participates in). If two routers share
-        more than one AMP protocol, whether or not a session is establish for
-        multiple AMP protocols is a local policy decision.
+        A router MUST NOT use an AMP Measurement Group sub-TLV carried in a
+        Router CAPABILITY TLV that, per Section 3 of
+        <xref target="RFC7981"/>, is not to be used: that is, one present in
+        an LSP of a system that is not currently reachable via Level x
+        paths, where "x" is the level in which the sending system
+        advertised the TLV, or one whose Router ID is 0.0.0.0 with no IPv6
+        TE Router ID sub-TLV present. Where an AMP session has already been
+        established as a result of such an advertisement, the receiving
+        router SHOULD tear the session down.
       </t>
 
       <t>
-        When a router receives the Router Capability TLV, it will check to see
-        if it supports the advertised IP endpoint address family, AMP protocol(s),
-        and group ID. If it does and there isn't already AMP session(s) with
-        the router, it will attempt to establish AMP session(s) with the
-        advertising IGP router. When both IP endpoints attempt to establish
-        a session for the same AMP protocol, the IP endpoint with the
-        lexicographically greater IP address's session take precedence.
+        When a router receives a usable AMP Measurement Group sub-TLV, it
+        MUST determine whether it has an IP endpoint configured as a member
+        of the AMG identified by the Group ID, and whether the advertised
+        endpoint address is of that AMG's address family. If either is not
+        the case, the sub-TLV MUST be ignored. Otherwise, if no AMP session
+        for that AMG has already been established between the two IP
+        endpoints, the receiving router attempts to establish one. When both
+        IP endpoints attempt to establish a session for the same AMG, the
+        session initiated by the endpoint with the greater IP address takes
+        precedence, where the two addresses are compared as unsigned octet
+        strings. Since both endpoints belong to the same AMG, they are of
+        the same address family and the comparison is therefore always
+        between addresses of equal length.
       </t>
 
       <t>
-        The Router Capability TLV, and thus the AMP Measurement Group sub-TLV, is
-        propagated across IS-IS area boundaries when area leaking is
-        configured as specified in <xref target="RFC7981"/>, satisfying
-        the requirement for cross-area discovery.
+        Because the AMP Measurement Group sub-TLV is advertised in a Router
+        CAPABILITY TLV with the S flag set, it is flooded across the entire
+        routing domain and is leaked between levels by L1/L2 routers as
+        specified in <xref target="RFC7981"/>. This satisfies the
+        requirement for discovery of measurement group members that are not
+        in the same IS-IS level as the advertising router. As noted in
+        Section 4 of <xref target="RFC7981"/>, at least one L1/L2 router in
+        every area of the domain must support the Router CAPABILITY TLV for
+        domain-wide flooding of TLVs originated by L1 routers to work.
       </t>
 
       <t>
 	If a router's measurement group membership changes, it MUST
-	update its Router Capability TLV advertisement
+	update its Router CAPABILITY TLV advertisement
 	accordingly. Routers receiving updated information MUST
-	process the changes and update their measurement group
-	membership database.
+	process the changes and update their record of measurement
+	group membership.
+      </t>
+    </section>
+
+    <section anchor="Inter-Domain-Discovery">
+      <name>Inter-IGP Domain Discovery of Active Measurement Groups</name>
+      <t>
+        Inter-IGP domain discovery of AMGs is expected to use BGP-LS
+        <xref target="RFC9552"/>, with IGP capability TLVs defined for BGP-LS
+        similar to what has been done for Segment Routing
+        <xref target="RFC9085"/>. Specification of those extensions is out of
+        scope for this document.
       </t>
     </section>
 
     <section anchor="IANA">
-    <!-- All drafts are required to have an IANA considerations section. See RFC 8126 for a guide.-->
       <name>IANA Considerations</name>
 
       <section>
-        <name>IS-IS Router Capability TLV Sub-TLVs</name>
-        <t>IANA is requested to assign a new sub-TLV type from the "IS-IS
-        Router Capability TLV sub-TLVs" registry for the Active Measurement
-        Protocol Measurement Group sub-TLV defined in this document.</t>
-      </section>
+        <name>IS-IS Sub-TLVs for IS-IS Router CAPABILITY TLV</name>
+        <t>
+          IANA is requested to assign a new sub-TLV type from the "IS-IS
+          Sub-TLVs for IS-IS Router CAPABILITY TLV" registry in the "IS-IS
+          TLV Codepoints" registry group for the AMP Measurement Group
+          sub-TLV defined in <xref target="amp-mg-sub-tlv"/> of this
+          document. The registration procedure for this registry is Expert
+          Review <xref target="RFC8126"/>; guidance for the IESG-designated
+          experts is provided in <xref target="RFC7370"/>. The requested
+          value is from the unassigned range 31-160.
+        </t>
 
-      <section>
-        <name>AMP Active Protocol Registry</name>
-        <t>IANA is requested to create a new registry called "AMP Active
-        Protocol Registry" under the "Interior Gateway Protocol (IGP)
-        Parameters" registry group. The registry should track value
-        assignments for Active Measurement Protocols in the AMP Protocol field of the
-        AMP Measurement Group sub-TLV.</t>
-
-        <t>The initial assignments are:</t>
-        <table>
+        <table anchor="iana-table">
+          <name>AMP Measurement Group Sub-TLV Registration</name>
           <thead>
             <tr>
               <th align="left">Value</th>
-              <th align="left">Protocol</th>
+              <th align="left">Description</th>
+              <th align="left">MP</th>
               <th align="left">Reference</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td align="left">0</td>
-              <td align="left">Reserved</td>
-              <td align="left">this document</td>
-            </tr>
-            <tr>
-              <td align="left">1</td>
-              <td align="left">TWAMP</td>
-              <td align="left"><xref target="RFC5357"/>, this document</td>
-            </tr>
-            <tr>
-              <td align="left">2</td>
-              <td align="left">STAMP</td>
-              <td align="left"><xref target="RFC8762"/>, this document</td>
-            </tr>
-            <tr>
-              <td align="left">3-255</td>
-              <td align="left">Unassigned</td>
-              <td align="left"></td>
+              <td align="left">TBD1</td>
+              <td align="left">AMP Measurement Group</td>
+              <td align="left">y</td>
+              <td align="left">This document</td>
             </tr>
           </tbody>
         </table>
 
-        <t>Future assignments are to be made through IETF Review <xref target="RFC8126"/>.</t>
+        <t>
+          The MP column is set to "y" since the AMP Measurement Group
+          sub-TLVs advertised by a router may be distributed across multiple
+          instances of the IS-IS Router CAPABILITY TLV as specified in
+          <xref target="RFC9885"/> and <xref target="amp-mg-sub-tlv"/> of
+          this document.
+        </t>
+
+        <t>
+          Early allocation of this codepoint in accordance with
+          <xref target="RFC7120"/> is requested.
+        </t>
+
+        <t>
+          [RFC Editor: please replace TBD1 with the value assigned by IANA,
+          both in <xref target="iana-table"/> and in
+          <xref target="amp-mg-sub-tlv"/>, and remove this note.]
+        </t>
       </section>
     </section>
 
     <section anchor="Security">
-      <!-- All drafts are required to have a security considerations section. See RFC 3552 for a guide. -->
       <name>Security Considerations</name>
       <t>
         This document defines a mechanism for advertising measurement group
         membership in IS-IS. The security considerations for IS-IS as
-        specified in <xref target="RFC1195"/> and <xref target="RFC5304"/>
+        specified in <xref target="ISO10589"/> and <xref target="RFC1195"/>
         apply.
       </t>
 
@@ -584,12 +596,20 @@
         <li>Failed measurement sessions</li>
         <li>Misconfiguration of measurement infrastructure</li>
         <li>Resource exhaustion if many false endpoints are advertised</li>
+        <li>
+          Measurement traffic directed at a third party, if an attacker
+          advertises an address belonging to a victim as an endpoint of a
+          widely deployed AMG
+        </li>
       </ul>
 
       <t>
-        To mitigate these risks, implementations SHOULD authenticate IS-IS
-        protocol exchanges using the mechanisms defined in <xref target="RFC5304"/>
-        for IS-IS authentication. Additionally, operators SHOULD configure
+        To mitigate these risks, and as recommended in Section 5 of
+        <xref target="RFC7981"/> for information carried in the Router
+        CAPABILITY TLV, an integrity mechanism such as those specified in
+        <xref target="RFC5304"/> or <xref target="RFC5310"/> SHOULD be
+        applied to IS-IS protocol exchanges. Additionally, operators
+        SHOULD configure
         appropriate access controls and monitoring to detect and prevent
         unauthorized advertisements.
       </t>
@@ -598,14 +618,16 @@
         The information advertised in the AMP Measurement Group sub-TLV reveals
         which routers are participating in measurement groups and which
         interface addresses are used for measurement purposes. This information
-        may be considered sensitive in some deployments. Operators should
-        consider the implications of this information disclosure when deploying
-        this mechanism.
+        may be considered sensitive in some deployments. Since the sub-TLV is
+        advertised with the S flag set, this information is flooded
+        throughout the IS-IS routing domain rather than being confined to the
+        level in which it originates, which widens the set of routers to
+        which it is disclosed. Operators should consider the implications of
+        this information disclosure when deploying this mechanism.
       </t>
     </section>
 
-    <!-- NOTE: The Acknowledgements and Contributors sections are at the end of this template -->
-  </middle>
+      </middle>
 
   <back>
     <references>
@@ -613,12 +635,27 @@
       <references>
         <name>Normative References</name>
 
+        <reference anchor="ISO10589">
+          <front>
+            <title>Intermediate System to Intermediate System intra-domain
+            routeing information exchange protocol for use in conjunction with
+            the protocol for providing the connectionless-mode network service
+            (ISO 8473)</title>
+            <author>
+              <organization>International Organization for
+              Standardization</organization>
+            </author>
+            <date month="November" year="2002"/>
+          </front>
+          <seriesInfo name="ISO/IEC" value="10589:2002, Second Edition"/>
+        </reference>
+
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5304.xml"/>
-        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7883.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5310.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7981.xml"/>
-        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8126.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8174.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9885.xml"/>
 
       </references>
 
@@ -627,16 +664,20 @@
 
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.1195.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.5357.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7120.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7370.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7883.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8126.xml"/>
         <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8762.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9085.xml"/>
+        <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.9552.xml"/>
 
       </references>
     </references>
 
     <section anchor="Acknowledgements" numbered="false">
-      <!-- an Acknowledgements section is optional -->
       <name>Acknowledgements</name>
-      <t>The authors would like to thank the participants in the IETF
-      discussions that led to this document.</t>
+      <t>Thanks to Rakesh Gandhi for discussion of requirements.</t>
     </section>
 
  </back>
